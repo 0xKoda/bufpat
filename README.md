@@ -17,7 +17,7 @@ This pattern generation tool is used to create unique, non-repeating patterns th
 
 ```
 git clone https://github.com/0xKoda/bufpat.git
-cd pattern-generation-tool
+cd bufpat
 ```
 
 3. Build the project
@@ -34,7 +34,7 @@ After building the project, you can use the tool with the following commands:
 - Generate a pattern of a specified length:
 
 ```
-./target/release/pat-rs <length>
+./target/release/bufpat <length>
 ```
 
 
@@ -42,7 +42,7 @@ Replace `<length>` with the desired pattern length.
 
 - Find the offset of a given pattern within the generated pattern:
 ```
-./target/release/pat-rs <search_pattern>
+./target/release/bufpat <search_pattern>
 ```
 
 
@@ -53,12 +53,12 @@ Replace `<search_pattern>` with the pattern you want to search for.
 - Generate a pattern of length 20:
 
 ```
-./target/release/pat-rs 20
+./target/release/bufpat 20
 ```
 
 - Find the offset of the pattern "Aa5":
 ```
-./target/release/pat-rs Aa5
+./target/release/bufpat Aa5
 ```
 
 ## License
