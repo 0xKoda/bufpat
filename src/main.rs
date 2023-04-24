@@ -1,5 +1,5 @@
-use std::env;
 use hex;
+use std::env;
 
 const MAX_LEN: usize = 16_348;
 
@@ -71,8 +71,7 @@ fn main() {
     } else if let Some(pos) = find_pat(arg) {
         println!(
             "Pattern {} found at position {} (first occurrence)",
-            arg,
-            pos
+            arg, pos
         );
     } else {
         println!("Pattern not found");
