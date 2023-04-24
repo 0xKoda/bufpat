@@ -7,7 +7,7 @@ const UPPER: &str = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
 const LOWER: &str = "abcdefghijklmnopqrstuvwxyz";
 const DIGITS: &str = "0123456789";
 
-fn gen_pattern(len: usize) -> Option<String> {
+fn gen_pat(len: usize) -> Option<String> {
     if len > MAX_LEN {
         eprintln!("Given length not supported");
         return None;
@@ -29,7 +29,7 @@ fn gen_pattern(len: usize) -> Option<String> {
     Some(pattern)
 }
 
-fn find_pattern(pattern: &str) -> Option<usize> {
+fn find_pat(pattern: &str) -> Option<usize> {
     let needle = if pattern.starts_with("0x") {
         let needle_vec = hex::decode(&pattern[2..]).ok()?;
         let reversed: Vec<u8> = needle_vec.iter().copied().rev().collect();
@@ -63,12 +63,12 @@ fn main() {
 
     let arg = &args[1];
     if let Ok(len) = arg.parse::<usize>() {
-        if let Some(pattern) = gen_pattern(len) {
+        if let Some(pattern) = gen_pat(len) {
             println!("{}", pattern);
         } else {
             eprintln!("Generating pattern failed");
         }
-    } else if let Some(pos) = find_pattern(arg) {
+    } else if let Some(pos) = find_pat(arg) {
         println!(
             "Pattern {} found at position {} (first occurrence)",
             arg,
@@ -85,16 +85,16 @@ mod tests {
 
     #[test]
     fn test_gen_pattern() {
-        assert_eq!(gen_pattern(23), Some("Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa".to_string()));
-        assert_ne!(gen_pattern(20), Some("Aa1Aa2Aa3Aa4Aa5Aa6Aa".to_string()));
-        assert_eq!(gen_pattern(0), Some("".to_string()));
-        assert_eq!(gen_pattern(MAX_LEN + 1), None);
+        assert_eq!(gen_pat(23), Some("Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa".to_string()));
+        assert_ne!(gen_pat(20), Some("Aa1Aa2Aa3Aa4Aa5Aa6Aa".to_string()));
+        assert_eq!(gen_pat(0), Some("".to_string()));
+        assert_eq!(gen_pat(MAX_LEN + 1), None);
     }
 
     #[test]
     fn test_find_pattern() {
-        assert_eq!(find_pattern("Aa5"), Some(15));
-        assert_eq!(find_pattern("0x42346642"), Some(942));
-        assert_eq!(find_pattern("423642"), None);
+        assert_eq!(find_pat("Aa5"), Some(15));
+        assert_eq!(find_pat("0x42346642"), Some(942));
+        assert_eq!(find_pat("423642"), None);
     }
 }
